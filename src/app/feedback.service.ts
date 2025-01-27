@@ -9,6 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class FeedbackService {
 
   private baseUrl = 'http://localhost:8080';
+  categoriesData: any;
 
   constructor(private http: HttpClient) {}
 
@@ -48,4 +49,26 @@ export class FeedbackService {
     return this.http.post(`${this.baseUrl}/user/update`, data);
   }
 
+  getFeedbackCategories() {
+   return new Promise((resolve) => {
+      this.http.get(`${this.baseUrl}/feedback/fetch-categories`).subscribe((data:any)=>{
+        this.categoriesData = data;
+        resolve(data)
+      });
+    })
+
+  }
+
+  viewFeedback(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/feedback/show-feedback`);
+  }
+
+  viewAllFeedback(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/feedback/show-all-feedback`);
+  }
+
+
+addFeedback(data:any){
+  return this.http.post(`${this.baseUrl}/feedback/add-categories`, data);
+}
 }
