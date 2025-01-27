@@ -15,6 +15,7 @@ export class HomeComponent {
 
   onLogout() {
     localStorage.removeItem('isAdmin');
+    localStorage.removeItem('userName')
     this.router.navigate(['/login']);
   }
 }

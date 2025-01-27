@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
     }
     this.feedbackService.loginUser(submitData).subscribe(
       (response)=>{
+        localStorage.setItem('userName',submitData.username)
         if(response && response.user && (response.user.roles && response.user.roles.includes('ROLE_ADMIN'))) {
           localStorage['isAdmin']= true;
         }
