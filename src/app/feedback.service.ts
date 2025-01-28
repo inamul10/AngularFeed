@@ -59,8 +59,8 @@ export class FeedbackService {
     });
   }
 
-  viewFeedback(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/feedback/show-feedback`);
+  viewFeedback(userName?:any): Observable<any> {
+    return this.http.get(`${this.baseUrl}/feedback/show-feedback?username=${userName}`);
   }
 
   viewAllFeedback(): Observable<any> {
